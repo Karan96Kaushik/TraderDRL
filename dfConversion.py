@@ -11,10 +11,12 @@ dfs = []
 
 # Loop over the list of file names
 for file_name in file_list:
+    create_df_from_file(file_name)
+
+def create_df_from_file(file_name):
     df = pd.read_csv(file_name)
 
     df['time'] = pd.to_datetime(df['time'], unit='ms')
-
 
     # Calculate Moving Averages
     df['SMA_10'] = talib.SMA(df['close'], timeperiod=10)  # Simple Moving Average for 10 periods
